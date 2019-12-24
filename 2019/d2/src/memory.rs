@@ -2,13 +2,20 @@ use std::fs;
 
 #[derive(Default)]
 pub struct Memory {
-    data: Vec<u32>,
     address: usize,
+    data: Vec<u32>,
 }
 
 impl Memory {
     pub fn at( &self ) -> usize {
         self.address
+    }
+
+    pub fn clone( &self ) -> Memory {
+        let mut newmem: Memory = Default::default();
+        newmem.address = 0;
+        newmem.data = self.data.clone();
+        return newmem
     }
 
     pub fn len( &self) -> usize {
